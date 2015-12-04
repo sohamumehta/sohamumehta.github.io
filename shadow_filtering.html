@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="*" rel="stylesheet" type="text/css" />
+<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+
+<title>Flatland Simulations</title>
+</head>
+<p align="justify" class="style1">Some examples from flatland simulations<br /></p>
+
+<p align="justify" class="style4"><br />Figure 1: The flatland scene (the light is the white bar at the top, the receiver is at the base, the 20 occluders are generated randomly)</p>
+<img src="images/research/shadowf/scene.png" alt="scene" width="870" height="610" />
+
+<p align="justify" class="style4"><br />Figure 2: The adaptive spp as computed using the theory</p>
+<img src="images/research/shadowf/spp_adaptive.png" alt="scene" width="670" height="500" />
+
+<p align="justify" class="style4"><br />Figure 3: The adaptive filter width per pixel (units not normalized to pixels, only for comparison with spp)</p>
+<img src="images/research/shadowf/filterwidth.png" alt="scene" width="670" height="500" />
+
+<p align="justify" class="style4"><br />Figure 4: The blue curve is the brute force computed irradiance, using 1500 spp(any lower sampling rate causes perceptible noise). The red curve is the noisy irradiance with only 118 spp (average), when filtered by our algorithm. All sampling is stratified.</p>
+<img src="images/research/shadowf/vis_brute_filtered.png" alt="scene" width="900" height="600" />
+
+<p align="justify" class="style4"><br />Figure 5: The blue curve is error in the sparsely-sampled irradiance relative to brute force, the red curve is the error in the filtered irraidance</p>
+<img src="images/research/shadowf/error_vis.png" alt="scene" width="670" height="500" />
+
+<body>
+
+</body>
+</html>

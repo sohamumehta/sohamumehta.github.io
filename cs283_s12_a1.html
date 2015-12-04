@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body  bgcolor="Silver">
+<h2 align="center">CS 283 (Spring 2012) (Instructor: <a href="http://www.cs.berkeley.edu/~job/Prof._James_F._OBrien/Home.html">Prof. James O' Brien</a>)</h2>
+<h2 align="center">Assignment 1: Deformable Body Simulation</h2>
+<table width="1079" height="200" border="0" align="center" cellpadding="10" bordercolor="#FFFFFF" vspace="2">
+  <tr>
+    <td width="302" height="100" class="style3"><p align="justify" class="style3">I used  the method of &quot;Position Based Dynamics&quot; first proposed by <a href="http://www.matthiasmueller.info">Matthias Muller</a> in <a href="http://www.matthiasmueller.info/publications/posBasedDyn.pdf">this</a> paper. The basic structures are (1) a node or particle which is the smallest element of the deformable body which moves according to external forces and constraints; and (2) the constraints which represent conditions that must be met by nodes 'joined' by the constraint. For the current implementation, the only constraint used was a spring-like constraint between joined nodes      </p>
+      <p align="justify" class="style3"><em>(1) Cloth Simulation: </em>The cloth is a 2D grid of nodes interconnected with adjacent, next to adjacent and diagonal constraints, under gravity. </p>
+      <p align="justify" class="style3">For resolving self-collisions, the constraint-based method is extremely complex and slow (due to multiple iterations of constraint projection). So, I instead used a simpler method as described in <a href="http://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cts=1331080472915&amp;ved=0CCcQFjAA&amp;url=http%3A//citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.14.9817&amp;rep=rep1&amp;type=pdf&amp;ei=_6xWT5aENoauiQLj8ajiBw&amp;usg=AFQjCNH_Oe3i9h4OE9FmSPwfdsrmEmAmQw&amp;sig2=RfLLhiS2Bx-dMWTJx9g9mw">this</a> Paper, to implement self-collision correction.</p>
+      <video width="800" height="600" controls="controls">
+        <source src="files/cloth.mp4" type="video/mp4" />
+        <object data="files/cloth.mp4" width="800" height="600">
+        </object>
+      </video>
+
+    </p><br>
+    <p align="justify" class="style3"><em>(2) Jello simulation: </em>The jello object is a 3D solid rectangular grid of nodes interconnected with adjacent, next to adjacent, diagonal and body-diagonal constraintsconstraints, under gravity.</p>
+        <video width="800" height="600" controls="controls">
+          <source src="files/jello.mp4" type="video/mp4" />
+          <object data="files/jello.mp4" width="800" height="600">
+          </object>
+        </video>
+      <p>&nbsp;</p>
+      <p class="style3"><a href="files/cs283_Soham_PosBasedDynamics.rar">Source Code</a> for this work in Windows .rar format.</p></td>
+  </tr>
+</table>
+<br><br><br>
+<table width="200" height="42" border="1" align="center" bordercolor="#FFFFFF">
+  <tr>
+    <td height="36" bgcolor="#000066" class="style1"><div align="center"><a href="index.html">Home</a></div></td>
+  </tr>
+</table>
+<br><br>
+</body>
+</html>

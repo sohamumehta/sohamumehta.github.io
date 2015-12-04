@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link href="stylesheet.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body  bgcolor="Silver">
+<h2 align="center">CS 284 (Fall 2012) (Instructor: <a href="http://www.cs.berkeley.edu/~sequin/">Prof. Carlo Sequin</a>)</h2>
+<h2 align="center">Programming Assignment: Dyadic Triangle Subdivision</h2>
+<table width="1097" height="2306" border="0" align="center" cellpadding="10" bordercolor="#FFFFFF" vspace="2">
+  <tr>
+    <td height="77" colspan="4" class="style3"><p>The first part of this assigment was implementing <a href="http://www.cs.berkeley.edu/~sequin/CS284/TEXT/loop87.pdf">Loop's triangle Subdivision scheme</a>.</p>
+    <p>The <strong>data strutures</strong> I used are as follows:</p></td>
+  </tr>
+  <tr>
+    <td width="244" height="112" class="style3"><p>class Vertex <br />
+      { <br />
+&nbsp;&nbsp;float3 pos;<br />
+&nbsp;&nbsp;Triangle *tri0;<br />
+&nbsp;&nbsp;int index;<br />
+    }</p></td>
+    <td width="245" class="style3">class Edge <br />
+      {<br />
+&nbsp;&nbsp;Vertex *v[2];<br />
+&nbsp;&nbsp;Triangle *t[2];<br />
+&nbsp;&nbsp;int edgeId;<br />
+    }</td>
+    <td width="278" class="style3">class Triangle <br />
+      { <br />
+&nbsp;&nbsp; Vertex *v[3];<br />
+&nbsp;&nbsp; Triangle *t[3];<br />
+&nbsp;&nbsp; int index;<br />
+}</td>
+    <td width="278" class="style3"> class SubdivMesh<br />
+      {<br />
+&nbsp;&nbsp;vector&lt;Vertex *&gt; vertices;<br />
+&nbsp;&nbsp;vector&lt;Triangle *&gt; triangles;<br />
+&nbsp;&nbsp;vector&lt;float3&gt; normals;<br />
+}</td>
+  </tr>
+  <tr>
+    <td height="132" colspan="4" class="style3"><p>The SubdivMesh object does not store edges, they are only used temporarily to (1) create the mesh from an input list of faces and vertices, and (2) to keep track of the edge vertices created in subdivision. The index number is used in Vertex and Triangle only to coordinate the parent mesh and the child mesh, it does not imply any connectivity information within the mesh. This may seem redundant since the vertices and faces already point to each other, but I could not find any easy alternative. One way to avoid this additional index would be to create the subdivided mesh with pointers to the parent mesh, but that complicates other things so I did not try it.</p>
+<p>My <strong>algorithm</strong> in brief is as follows:</p>
+<p>1. Read from a file list of vertices (3 floats) and triangle faces (3 integers). This must represent a closed 2-manifold triangle mesh or the program will crash.</p>
+<p>  2. To create a SubdivMesh proceed as follows: Copy vertices into the SubdivMesh vector. Then for each triangle,  point the triangle's v[] to the vertices and point vertex v[3]'s tri0 to the triangle. For the rest of the connectivity information create a set&lt;Edge&gt; edges. Loop through the triangles and search for edges 01, 12, 20; if edge found set edge's trinangle pointer and triangle's neighbor triangle pointers, if not found push in a new edge. Edge::edgeId stores 0,1 or 2 if the edge is 01, 12 or 20 in its first triangle t[0].</p>
+<p>  3. Begin subdivision. This routine returns a completely new mesh while leaving the parent mesh unchanged. Allocate a new SubdivMesh by first creating a vertex vector (of blank vertices) of same length as parent mesh, and a triangle vector 4x in length as parent vector. Note that a triangle with index i in the parent mesh corresponds to indices 4i+j (j=0,1,2,3) in the child mesh.</p>
+<p>4. For each vertex in the parent mesh, set the locations of the new vertex points in the child mesh by finding the 1-ring of vertices around this vertex. Use a weight 5/8 for the vertex and 3/8 for the centroid of the 1-ring.</p>
+<p>5. To create the new edge-points, a map&lt;Edge, Vertex *&gt; edgeVerts is required to avoid processing a single edge multiple times. Each edge associates with a single new edge vertex. Loop through the parent mesh's triangle, and search for edges 01, 12, 20; if not found create a new edge vertex by weighting the edge end-points by 3/8 each and the other 2 vertices of the edge's t[] by 1/8 each.</p>
+<p>6. To complete the connectivity information in the child mesh, first point the vertex-points created in step 3 with their tri0s. Use the Triangle::index data to find the triangle in the child mesh.</p>
+<p>7. For each triangle in the parent mesh, point the 4 corresponding triangles in the child mesh to each other. To set up the additional connections between sub-triangles of neighboring triangles in the parent mesh, use Triangle::index is required.</p>
+<p>8. Lastly, connect each new triangle with the new vertices. The Vertex::index data is required to convey this connectivity information from the parent mesh to the child mesh.</p>
+<p>9. To compute additional subdivision levels repeat step 3-8 above.</p>
+<p>10. Display everything using OpenGl's GlBegin(GL_TRIANGLES). Simple diffuse shading can be computed manually using the SubdivMesh normals.</p></td>
+  </tr>
+  <tr>
+    <td height="386" colspan="4" class="style3"><p><strong>Example results: </strong></p>
+<p><em>(1) Cube: This is a simple test case, note that the vertices with valence 3 behave differently from the regular vertices</em>.</p>
+<p align="justify" class="style4"><img src="images/cs284_f12_subdiv/cubeall.png" width="1087" height="240" alt="cube" /></p>
+<br>
+<p><em>(2) Cup: The base mesh was desinged in Autodesk Maya. Edges are not shown for clarity.</em></p>
+     <center>
+    <p class="style4"><img src="images/cs284_f12_subdiv/cupall.png" width="1095" height="271" alt="cup" /></p></td>
+  </tr>
+  <tr>
+    <td height="113" colspan="4" class="style3"><p class="style3">The second part of the assignment is to apply smooth textures to our Subdivision Surfaces. This simply requires interpolating the texture coordinates of each triangle face in the base mesh to the 4 child faces. The vertex-point texture coordinates do not change, the edge-poin texture coordinates are the mean values of those at the edge end-vertices.</p>
+<p class="style3"><em>(1) Textured Cube:</em></p></td>
+  </tr>
+  <tr>
+    <td height="104" colspan="4" align="center" class="style3"><span class="style4"><img src="images/cs284_f12_subdiv/txcube.png" alt="textured cube" width="692" height="341" align="baseline"/></span></td>
+  </tr>
+</table>
+<br><br><br>
+<table width="200" height="42" border="1" align="center" bordercolor="#FFFFFF">
+  <tr>
+    <td height="36" bgcolor="#000066" class="style1"><div align="center"><a href="index.html">Home</a></div></td>
+  </tr>
+</table>
+<br>
+</body>
+</html>

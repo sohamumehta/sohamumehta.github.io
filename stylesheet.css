@@ -1,0 +1,81 @@
+@charset "utf-8";
+/* CSS Document */
+
+<style type="text/css">
+
+a:link {
+	color: #3399FF;
+}
+a:visited {
+	color: #8888FF;
+}
+a:link {
+	color: #4444CC;
+}
+a:hover {
+	color: #00FFFF;
+	
+}
+
+
+.style1 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	color: #CCCCFF;
+	font-style: normal;
+}
+.style2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 36px;
+	font-weight: bold;
+	color: #000000;
+}
+.style3 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #000000;
+}
+.style4 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 36px;
+	color: #000000;
+	background-color: #FFFFFF;
+}
+.style5 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12x;
+	color: #F0F0F0;
+}
+.tablecellborder {
+      border: solid black 1pt;
+}
+
+</style>
+.style3 p {
+	text-align: justify;
+}
+.style3 p {
+	text-align: justify;
+	font-size: 16px;
+}
+.style3 .style4 {
+	font-size: 16px;
+}
+.style6 {
+	font-size: 24px;
+}
+.style2 {
+	text-align: center;
+	text-decoration: underline;
+
+}
+.style2 .style2 .style2 strong {
+	font-weight: normal;
+}
+.style2 {
+	font-weight: normal;
+
+}
+.style2 strong {
+	font-weight: normal;
+}

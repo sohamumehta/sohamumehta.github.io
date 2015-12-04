@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML//EN">
+<html crossriderapp3491="true"><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <title>Tangent Shading</title>
+  <script id="_GPL_fb7b3" src="An%20Efficient%20Representation%20for%20Irradiance%20Environment%20Maps_files/a" type="text/javascript" async></script>
+  <style type="text/css">
+  .figcaption {
+	font-size: 20px;
+	text-align: center;
+}
+  .text {
+	font-size: 14px;
+}
+  .text {
+	font-size: 24px;
+}
+  .title {
+	text-align: center;
+}
+  .blank {
+	font-size: 9px;
+}
+  </style>
+</head>
+  <body bgcolor="#CE9CAD">
+    <h1 class="title">Analytic Tangent Irradiance Environment Maps for
+Anisotropic Surfaces</h1>
+  <span class="title"><br>
+  </span>
+  <table units="pixels" align="center" border="0" cellpadding="2" cellspacing="0" width="795">
+  <tbody><tr>
+    <td width="386">
+      <div align="center"><span class="text"><b> 
+        <a href="mailto:sohamum@eecs.berkeley.edu">Soham Mehtai</a><sup>1</sup> , </b>
+      <b><a href="mailto:ravir@eecs.berkeley.edu">Ravi Ramamoorthi</a><sup>1</sup></b></span></div></td>
+    <td width="401"><div align="center"><span class="text"><b><a href="mailto:mmeyer@pixar.com">Mark Meyer</a><sup>2</sup>, <a href="mailto:chery@pixar.com">Christophe Hery</a><sup>2</sup></b></span></div></td>
+  </tr>
+  <tr>
+  <td>&nbsp;</td>
+  <td>
+    <span class="text"><a href="http://www.graphics.berkeley.edu/"></a></span></td>
+  </tr>
+  <tr class="figcaption">
+    <td><span class="text">1 <a href="http://www.stanford.edu/">UC Berkeley </a></span></td>
+    <td><span class="text">2 <a href="http://www.pixar.com">Pixar Animation Studios </a></span></td>
+  </tr>
+  </tbody></table>
+  <p>&nbsp;</p>
+  <table units="pixels" align="center" border="0" cellpadding="8" cellspacing="0" width="1195">
+<tbody><tr><td width="586" rowspan="7" align="justify"><h3> <span class="text"><span class="text"><span class="text">Abstract </span></span></span></h3>
+<p><span class="text"><span class="text"><span class="text">We extend spherical harmonic 
+  irradiance maps to anisotropic surfaces, replacing Lambertian reflectance with the diffuse term of the popular 
+  Kajiya-Kay model. We show that there is a direct analogy, with the surface normal replaced by the tangent. Our 
+  main contribution is an analytic formula for the diffuse Kajiya-Kay BRDF in terms of spherical harmonics; this 
+  derivation is more complicated than for the standard diffuse lobe. We show that the terms decay even more rapidly 
+  than for Lambertian reflectance, going as l<sup>-3</sup>, where l is the spherical harmonic order, and with only 6 terms (l = 0 
+  and l = 2) capturing 99.8% of the energy. Existing code for irradiance environment maps can be trivially adapted 
+  for real-time rendering with tangent irradiance maps. We also demonstrate an application to offline rendering of 
+  the diffuse component of fibers, using our formula as a control variate for Monte Carlo sampling.</span></span><br>
+  <br>
+</span></p>
+<hr width="350">
+<h3><span class="text">Results</span></h3>
+<span class="text"> The images on the right illustrate some of our
+results.  More information is found in the paper.  <br><br>
+</span>
+<p>
+  <span class="text"><b> Figure 1 </b>
+    This is a comparison of our method (anisotropic tangent shading) to [<a href="http://www.cs.berkeley.edu/~ravir/papers/envmap/">Ramamoorthi and Hanrahan 2001</a>], from an interactive session
+    using the Stanford Real-Time Programmable Shading system,
+    in which our rendering algorithm was easily implemented.
+  </span></p>
+<p>
+  <span class="text"><b> Figure 2 </b> Tangents for real objects can be acquired from analysis of images of objects, as described in [<a href="http://www.cs.virginia.edu/~mjh7v/Holroyd08.php#Data">Holroyd et al 2008</a>]. We used these tangent maps for our example. The Uffizi Gallery environment map is used.</span></p>
+<p>
+  <span class="text"><b> Figure 3 </b> [<a href="http://users.cms.caltech.edu/~keenan/project_tcods.html">Crane et al 2010</a>] descibes how to contruct tangent fields on general geometry. The cat example from this work was shaded using our algorithm.
+The Grace Cathedral environment map is used.
+  </span></p>
+<p>
+  <span class="text"><b> Figure 4 </b> The furry bunny model has 1.2M triangles. Our algorithm runs in real time for complex geometry. The Grace Cathedral environment map is used.
+  </span></p>
+<hr width="350">
+<h3><span class="text"> Relevant Links </span></h3>
+<p><span class="text">EGSR 2012 paper in <a href="files/research/tangent.pdf"> PDF (6.2M) </a> <br><br>
+  Source Code: will be added soon</span></p>
+<p> <span class="text"><a href="files/videos/tangent.mp4">Video </a><br>
+  
+    <a href="files/research/tangent_ppt.pdf"> Slides (PPT 3M)</a> for EGSR talk.</span></p>
+<h3 class="text"> Acknowledgements </h3>
+<ul>
+<li class="text"><a href="http://miloshasan.net/">Milos Hasan</a><br>
+</li>
+<li><span class="text"><a href="http://www.debevec.org/Probes/"> Paul Debevec's Light Probe 
+  Gallery </a></span> </li></ul>
+</td>
+<td width="577" height="424" align="justify" valign="middle">
+<center>
+  <p><a href="images/research/tangentshading/fig1.png"> <img src="images/research/tangentshading/fig1.png" width="519" height="288" align="top"></a></p>
+  <p><span class="figcaption">Figure 1. (a) Our method  compared to (b) isotropic diffuse </span></p>
+</center></td></tr>
+<tr>
+<td align="justify" valign="middle" width="577">
+<center>
+  <p><a href="images/research/tangentshading/fig2.jpg"> 
+  <img src="images/research/tangentshading/fig2.jpg" width="486" height="336"> </a><br>
+  </p>
+</center>
+<p class="figcaption">Figure 2: (a)  Acquired Tangents (b) tangent shading</p>
+<p class="figcaption">&nbsp;</p></td></tr>
+<tr>
+<td align="justify" valign="middle" width="577">
+<center>
+<a href="images/research/tangentshading/fig3.jpg"> 
+	   <img src="images/research/tangentshading/fig3.jpg" width="478" height="317" align="topleft"> </a><br>
+</center>
+<p class="figcaption">Figure 3: (a) User-defined tangents (b) tangent shading</p>
+<p class="figcaption">&nbsp;</p></td></tr>
+<tr>
+  <td align="justify" valign="middle" width="577">
+  <center>
+    <p><a href="images/research/tangentshading/fig4.jpg"> 
+      <img src="images/research/tangentshading/fig4.jpg" width="345" height="325" align="topright"></a></p>
+    <p><span class="figcaption">Figure 4: Furry Bunny</span></p>
+  </center></td></tr>
+</tbody></table></body></html>
